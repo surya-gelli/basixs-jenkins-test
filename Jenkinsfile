@@ -5,7 +5,8 @@ pipeline{
 	stages{
 		stage("rollback") {
 			when { changeRequest target: "lambdas/rollback/**" }
-			steps{
+			steps
+			{
 				script 
 				{
 					if (env.BRANCH_NAME == 'master') 
@@ -20,7 +21,8 @@ pipeline{
 			}
 			stage("slack") {
 			when { changeRequest target: "lambdas/slack/**" }
-			steps{
+			steps
+			{
 				script
 				{
 					if (env.BRANCH_NAME == 'master') 
