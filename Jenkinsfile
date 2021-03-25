@@ -20,6 +20,7 @@ pipeline {
 					}
 				}
 			}
+		}	
 		stage("slack")
 		{
 			when { changeRequest target: "lambdas/slack/**" }
@@ -40,4 +41,3 @@ pipeline {
 		}
 	}
 }
-}		
