@@ -1,41 +1,46 @@
 pipeline {
 	agent  any
 	stages {
-		stage("rollback")
-		{
-			when { changeRequest target: "lambdas/rollback/**" }
-			steps
-			{
-				script 
+		stage ("lambdas") {
+			parallel {
+				stage("rollback")
 				{
-					if (env.BRANCH_NAME == 'master') 
+					when { changeRequest target: "lambdas/rollback/**" }
+					steps
 					{
-						sh """ echo "Hello world" """
+						script 
+						{
+							if (env.BRANCH_NAME == 'master') 
+							{
+								sh """ echo "Hello world" """
+							}
+							else 
+							{
+								sh """ echo "Hello from development" """
+							}
+						}
 					}
-					else 
-					{
-						sh """ echo "Hello from development" """
-					}
-				}
-			}
-		}	
-		stage("slack")
-		{
-			when { changeRequest target: "lambdas/slack/**" }
-			steps
-			{
-				script
+				}	
+				stage("slack")
 				{
-					if (env.BRANCH_NAME == 'master') 
+					when { changeRequest target: "lambdas/slack/**" }
+					steps
 					{
-						sh """ echo "Hello world" """
-					}
-					else 
-					{
-						sh """ echo "Hello from development" """
+						script
+						{
+							if (env.BRANCH_NAME == 'master') 
+							{
+								sh """ echo "Hello world" """
+							}
+							else 
+							{
+								sh """ echo "Hello from development" """
+							}
+						}
 					}
 				}
 			}
 		}
+		
 	}
 }
