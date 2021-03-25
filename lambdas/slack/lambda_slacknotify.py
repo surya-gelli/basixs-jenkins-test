@@ -22,3 +22,6 @@ def lambda_handler(event, context):
         resp = request.urlopen(req)
     except Exception as em:
         print("EXCEPTION: " + str(em))
+
+
+lambda_handler
