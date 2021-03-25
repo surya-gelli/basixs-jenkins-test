@@ -5,36 +5,36 @@ pipeline {
 			parallel {
 				stage("rollback")
 				{
-					when { changeRequest target: "lambdas/rollback/**" }
+					when { changeset "lambdas/rollback/**" }
 					steps
 					{
 						script 
 						{
 							if (env.BRANCH_NAME == 'master') 
 							{
-								sh """ echo "Hello world" """
+								sh ''' cd lambdas/rollback/ && cat ECSRollbackfunction.py '''
 							}
 							else 
 							{
-								sh """ echo "Hello from development" """
+								sh ''' echo "Hello from development" '''
 							}
 						}
 					}
 				}	
 				stage("slack")
 				{
-					when { changeRequest target: "lambdas/slack/**" }
+					when { changeset "lambdas/slack/**" }
 					steps
 					{
 						script
 						{
 							if (env.BRANCH_NAME == 'master') 
 							{
-								sh """ echo "Hello world" """
+								sh ''' cd lambdas/slack && cat lambda_slacknotify.py '''
 							}
 							else 
 							{
-								sh """ echo "Hello from development" """
+								sh ''' echo "Hello from development" '''
 							}
 						}
 					}
