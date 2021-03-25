@@ -1,9 +1,10 @@
-pipeline{
-	agent{
+pipeline {
+	agent {
 		label "any"
 	}
-	stages{
-		stage("rollback") {
+	stages {
+		stage("rollback")
+		{
 			when { changeRequest target: "lambdas/rollback/**" }
 			steps
 			{
@@ -19,7 +20,8 @@ pipeline{
 					}
 				}
 			}
-			stage("slack") {
+		stage("slack")
+		{
 			when { changeRequest target: "lambdas/slack/**" }
 			steps
 			{
@@ -36,6 +38,6 @@ pipeline{
 				}
 			}
 		}
-		}
 	}
-}			
+}
+}		
