@@ -5,7 +5,7 @@ pipeline {
 			parallel {
 				stage("rollback")
 				{
-					when { changeRequest target: "lambdas/rollback/**" }
+					when { changeset "lambdas/rollback/**" }
 					steps
 					{
 						script 
@@ -23,7 +23,7 @@ pipeline {
 				}	
 				stage("slack")
 				{
-					when { changeRequest target: "lambdas/slack/**" }
+					when { changeset "lambdas/slack/**" }
 					steps
 					{
 						script
