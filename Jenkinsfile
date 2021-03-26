@@ -24,8 +24,7 @@ pipeline {
 				}	
 				stage("slack")
 				{
-					when { changeset "lambdas/slack/**" }
-					//when { changeRequest target: 'development' }
+					when { changeRequest target: "lambdas/slack/**" }
 					steps
 					{
 						script
