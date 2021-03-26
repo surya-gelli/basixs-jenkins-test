@@ -24,8 +24,8 @@ pipeline {
 				}	
 				stage("slack")
 				{
-				    when { changeRequest comparator: 'EQUALS', target: 'master' }
-
+				    //when { changeRequest comparator: 'EQUALS', target: 'master' }
+                    checkoutToSubdirectory("/lambdas/slack/**")
 					steps
 					{
 						script
