@@ -24,3 +24,4 @@ def lambda_handler(event, context):
         print("EXCEPTION: " + str(em))
 
 
+lambda_handler
