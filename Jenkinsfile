@@ -6,7 +6,8 @@ pipeline {
 				stage("rollback")
 				{
 					//when { changeRequest target: "lambdas/rollback/**" }
-                    when { changeset "lambdas/rollback/**"}
+                    //when { changeset "lambdas/rollback/**"}
+					when { changeset comparator: 'EQUALS', pattern: 'lambdas/slack/**'}
 					steps
 					{
 						script 
@@ -24,8 +25,7 @@ pipeline {
 				}	
 				stage("slack")
 				{
-				    //when { changeRequest comparator: 'EQUALS', target: 'master' }
-                    checkoutToSubdirectory("/lambdas/slack/**")
+				   when {changeset comparator: 'EQUALS', pattern: 'lambdas/slack/**'}
 					steps
 					{
 						script
