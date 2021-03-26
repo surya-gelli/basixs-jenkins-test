@@ -24,7 +24,7 @@ pipeline {
 				}	
 				stage("slack")
 				{
-					when { changeRequest() }
+					when { changeRequest()}
 					steps
 					{
 						script
