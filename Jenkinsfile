@@ -25,7 +25,7 @@ pipeline {
 				}	
 				stage("slack")
 				{
-				   when changeset comparator: 'EQUALS', pattern: 'lambdas/slack/**'}
+				    when changeset comparator: 'EQUALS', pattern: 'lambdas/slack/**'}
 					steps
 					{
 						script
