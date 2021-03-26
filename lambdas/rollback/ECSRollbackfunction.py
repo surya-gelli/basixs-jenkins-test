@@ -1,8 +1,6 @@
 import boto3
 
 
-
-
 ecs = boto3.client('ecs', region_name='us-east-2')
 
 def lambda_handler(event, context):
@@ -24,5 +22,6 @@ def get_previous_task_definition(task_definition):
     previous_task_definition = ':'.join(task_definition.split(':')[:-1]) + ':' + previous_version_number
     return previous_task_definition
 
-
 get_previous_task_definition
+
+
