@@ -46,7 +46,7 @@ pipeline {
 	post
 	{
 		always{
-			cleanWs "workspace successfully cleaned"
+			cleanWs
 		}
 	}	
 }
