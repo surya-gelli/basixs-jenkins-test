@@ -26,7 +26,7 @@ pipeline {
 				}	
 				stage("slack")
 				{
-					when { expression {return changed.contains('slack/**') } }
+					when { expression {return changed ==~ 'slack/**' } }
 				    //when { changeset comparator: 'EQUALS', pattern: 'lambdas/slack/**'}
 					steps
 					{
