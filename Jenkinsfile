@@ -8,8 +8,8 @@ pipeline {
 				stage("rollback")
 				{
 				   when { 
-					    changeRequest() 
-				        changeset 'lambda/rollback/**'
+					    changeset 'lambda/rollback/**'
+					    changeRequest()     
 				    }
 					steps
 					{
