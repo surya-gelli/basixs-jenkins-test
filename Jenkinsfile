@@ -7,8 +7,7 @@ pipeline {
 			parallel {
 				stage("rollback")
 				{
-				    options { checkoutToSubdirectory 'lambdas/rollback/**' }
-                 //when { changeset "lambdas/rollback/**"}
+				   when { changeRequest() }
 					steps
 					{
 						script 
