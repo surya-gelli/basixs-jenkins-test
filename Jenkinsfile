@@ -1,3 +1,4 @@
+changed = "lambdas"
 pipeline {
 	agent  any
 	stages {
@@ -24,7 +25,7 @@ pipeline {
 				}	
 				stage("slack")
 				{
-					when { changeRequest() }
+					when { expression {return $(changed).contains('slack')} }
 				    //when { changeset comparator: 'EQUALS', pattern: 'lambdas/slack/**'}
 					steps
 					{
@@ -40,7 +41,7 @@ pipeline {
 							}
 						}
 					}
-				}
+				 }
 			}
 		}
 		
