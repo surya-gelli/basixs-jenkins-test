@@ -7,7 +7,10 @@ pipeline {
 			parallel {
 				stage("rollback")
 				{
-				   when { changeRequest { changeset 'lambda/rollback/**'} }
+				   when { 
+					    changeRequest() 
+				        changeset 'lambda/rollback/**'
+				    }
 					steps
 					{
 						script 
