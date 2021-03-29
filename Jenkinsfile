@@ -7,10 +7,9 @@ pipeline {
 			parallel {
 				stage("rollback")
 				{
-					when { 
+					when {
 						anyOf {
-						    //changeset 'lambdas/rollback/**' 
-							changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback'
+							changeRequest url: 'git@github.com:surya-gelli/basixs-jenkins-test.git'
 						}
 					}
 					steps
