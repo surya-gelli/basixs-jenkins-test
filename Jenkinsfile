@@ -10,6 +10,7 @@ pipeline {
 					when { 
 						anyOf {
 						    changeset 'lambdas/rollback/**' 
+							changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback'
 						}
 					}
 					steps
@@ -32,7 +33,7 @@ pipeline {
 					when { 
 						anyOf {
 						    changeset 'lambdas/slack/**' 
-							changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback'
+							changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/slack'
 
 						}
 					}
