@@ -9,7 +9,7 @@ pipeline {
 				stage("rollback")
 				{
 					when {
-	                    expression { return env.changed =~ '/lambdas/rollback/**'}
+	                    expression { return env.changed =~ '/lambdas/rollback/'}
 					}
 					steps
 					{
