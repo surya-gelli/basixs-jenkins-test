@@ -1,14 +1,15 @@
-changed = "lambdas"
-
 pipeline {
 	agent  any
+	environment{
+        CHANGED = sh(returnStdout: true, script: 'git diff origin/$BRANCH_NAME --name-only')
+    } 
 	stages {
 		stage ("lambdas") {
 			parallel {	
 				stage("rollback")
 				{
 					when {
-	                    expression { file("lambdas/rollback/**")}
+	                    expression { return env.changed =~ '/lambdas/rollback/**'}
 					}
 					steps
 					{
