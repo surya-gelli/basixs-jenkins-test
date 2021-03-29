@@ -4,14 +4,12 @@ pipeline {
 	agent  any
 	stages {
 		stage ("lambdas") {
-            when {
-				anyOf {
-					changeRequest url: 'git@github.com:surya-gelli/basixs-jenkins-test.git'
-				}
-			}
 			parallel {	
 				stage("rollback")
 				{
+					when {
+						changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback'
+					}
 					steps
 					{
 						script 
@@ -20,7 +18,7 @@ pipeline {
 							{
 								sh ''' cd lambdas/rollback/ && cat ECSRollbackfunction.py '''
 							}
-							else 
+							else 	
 							{
 								sh ''' echo "Hello from development" '''
 							}
