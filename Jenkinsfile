@@ -28,7 +28,7 @@ pipeline {
 				stage("slack")
 				{
 					when {
-						changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/slack'
+	                    expression { file("lambdas/slack/**")}
 					}
 					steps
 					{
