@@ -4,14 +4,14 @@ pipeline {
 	agent  any
 	stages {
 		stage ("lambdas") {
-			parallel {
+            when {
+				anyOf {
+					changeRequest url: 'git@github.com:surya-gelli/basixs-jenkins-test.git'
+				}
+			}
+			parallel {	
 				stage("rollback")
 				{
-					when {
-						anyOf {
-							changeRequest url: 'git@github.com:surya-gelli/basixs-jenkins-test.git'
-						}
-					}
 					steps
 					{
 						script 
@@ -29,13 +29,6 @@ pipeline {
 				}	
 				stage("slack")
 				{
-					when { 
-						anyOf {
-						    changeset 'lambdas/slack/**' 
-							changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback'
-
-						}
-					}
 					steps
 					{
 						script
