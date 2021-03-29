@@ -8,7 +8,7 @@ pipeline {
 				stage("rollback")
 				{
 					when {
-						changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback'
+						changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback'
 					}
 					steps
 					{
@@ -28,7 +28,7 @@ pipeline {
 				stage("slack")
 				{
 					when {
-						changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/slack'
+						changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/slack'
 					}
 					steps
 					{
