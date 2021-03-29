@@ -9,7 +9,7 @@ pipeline {
 				{
 					when { 
 						anyOf {
-						    changeset 'lambdas/rollback/**' 
+						    //changeset 'lambdas/rollback/**' 
 							changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback'
 						}
 					}
