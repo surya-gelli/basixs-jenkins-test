@@ -27,18 +27,13 @@ pipeline {
 						}
 					}
 				}	
-
-
-
-
-
-
-
-
 				stage("slack")
 				{
-					when { expression {return changed.contains ==~ 'slack/*' } }
-				    //when { changeset comparator: 'EQUALS', pattern: 'lambdas/slack/**'}
+					when { 
+						anyOf {
+						    changeset 'lambdas/slack/**' 
+						}
+					}
 					steps
 					{
 						script
