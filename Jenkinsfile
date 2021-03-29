@@ -9,9 +9,9 @@ pipeline {
 				{
 					when { 
 						anyOf {
-						    changeset 'lambdas/slack/**' 
+						    changeset 'lambdas/rollback/**' 
 						}
-					}		
+					}
 					steps
 					{
 						script 
