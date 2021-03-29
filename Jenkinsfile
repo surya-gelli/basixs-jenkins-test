@@ -7,10 +7,11 @@ pipeline {
 			parallel {
 				stage("rollback")
 				{
-				   when { 
-					    changeset 'lambda/rollback/**'
-					    changeRequest()     
-				    }
+					when { 
+						anyOf {
+						    changeset 'lambdas/slack/**' 
+						}
+					}		
 					steps
 					{
 						script 
@@ -26,6 +27,14 @@ pipeline {
 						}
 					}
 				}	
+
+
+
+
+
+
+
+
 				stage("slack")
 				{
 					when { expression {return changed.contains ==~ 'slack/*' } }
