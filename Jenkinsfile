@@ -8,7 +8,7 @@ pipeline {
 				stage("rollback")
 				{
 					when {
-	                    expression { areFilesChanged("lambdas/rollback")}
+	                    expression { file("lambdas/rollback/**")}
 					}
 					steps
 					{
