@@ -6,10 +6,9 @@ pipeline {
 				stage("rollback")
 				{
 					when {
-						anyOf {
-							changeRequest url: "https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback"
-							changeRequest url: "https://github.com/surya-gelli/basixs-jenkins-test/tree/development/lambdas/rollback"
-
+						allOf {
+							changeRequest url: "https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback"
+							changeset '/lambdas/rollback'
 						}
 					}
 					steps
