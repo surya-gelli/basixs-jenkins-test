@@ -6,8 +6,12 @@ pipeline {
 				stage("rollback")
 				{
 					when {
+						anyOf {	
 							//changeset "lambdas/rollback/*"
-							changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback' branch: '$BRANCH_NAME'
+							changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback/',branch: 'master'
+							changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/development/lambdas/rollback/',branch: 'development'
+							
+				        }
 				    }
 					steps
 					{
