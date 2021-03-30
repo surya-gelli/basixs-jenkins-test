@@ -29,7 +29,7 @@ pipeline {
 				stage("slack")
 				{
 					when {
-	                    expression { file("lambdas/slack/**")}
+	                    changeRequest()
 					}
 					steps
 					{
