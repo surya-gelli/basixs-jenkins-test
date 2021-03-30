@@ -1,7 +1,7 @@
 pipeline {
 	agent  any
 	environment {
-		CHANGED = sh(returnStdout: true, script: 'git diff origin/master|development --name-only')
+		CHANGED = sh(returnStdout: true, script: 'git diff origin/master --name-only')
 	}
 	stages {
 		stage ("lambdas") {
