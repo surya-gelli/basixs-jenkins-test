@@ -9,7 +9,7 @@ pipeline {
 				stage("rollback")
 				{
 					when {
-	                    expression { return env.CHANGED.contains('lambdas/slack/**')}
+	                    expression { return env.CHANGED.contains('lambdas/rollback/**')}
 					}
 					steps
 					{
