@@ -1,7 +1,7 @@
 pipeline {
 	agent  any
 	environment{
-		CHANGED = sh(returnStdout: true, script: "git diff-tree $BRANCH_NAME --stat=999 $GIT_PREVIOUS_COMMIT...$GIT_COMMIT") 
+		CHANGED = sh(returnStdout: true, script: "git diff-tree $BRANCH_NAME --stat=999 lambdas/rollback") 
 	}
 	stages {
 		stage ("lambdas") {
