@@ -1,7 +1,7 @@
 pipeline {
 	agent  any
 	environment {
-        CHANGED = sh(returnStdout: true, script: 'git diff origin/$BRANCH_NAME --name-only')
+        CHANGED = sh(returnStdout: true, script: 'git diff origin/master --name-only')
     } 
 	stages {
 		stage ("lambdas") {
@@ -9,7 +9,7 @@ pipeline {
 				stage("rollback")
 				{
 					when {
-	                    expression { return env.CHANGED ==~ 'lambdas/rollback/';}
+	                    expression { return env.CHANGED ==~ 'lambdas/rollback/'}
 					}
 					steps
 					{
