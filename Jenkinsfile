@@ -1,13 +1,15 @@
 pipeline {
 	agent  any
 	environment{
-		CHANGED = sh(returnStdout: true, script: "git diff --name-only $BRANCH_NAME $GIT_PREVIOUS_COMMIT...$GIT_COMMIT ") >> changes.txt
+		CHANGED = sh(returnStdout: true, script: "git diff --name-only $BRANCH_NAME $GIT_PREVIOUS_COMMIT...$GIT_COMMIT") 
 	}
 	stages {
 		stage ("lambdas") {
 			parallel {	
 				stage("rollback")
-				{
+				{    
+					echo env.CHANGED
+					echo "kkkkkkk"
 					when {
 						//expression {return env.CHANGED ==~ "/lambdas/rollback/**"}
 						changeset comparator: 'GLOB',pattern: env.CHANGED =~ 'lambdas/rollback/*.*'
