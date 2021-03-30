@@ -8,7 +8,7 @@ pipeline {
 					when {
 						allOf {
 							changeRequest url: "https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/"
-							changeset '/lambdas/rollback'
+							changeset "lambdas/rollback/"
 						}
 					}
 					steps
