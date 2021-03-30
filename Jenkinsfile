@@ -1,7 +1,7 @@
 pipeline {
 	agent  any
 	environment{
-		CHANGED = sh(returnStdout: true, script: "git diff origin/master --name-only")	
+		CHANGED = sh(returnStdout: true, script: "git diff origin/master...origin/development --name-only")	
 	}
 	stages {
 		stage ("lambdas") {
@@ -9,8 +9,8 @@ pipeline {
 				stage("rollback")
 				{
 					when {
-						   // expression {return env.CHANGED ==~ 'lambdas/rollback/'}
-                           changeRequest branch: 'master', comparator: 'GLOB', url: "https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback"
+						   expression {return env.CHANGED ==~ 'lambdas/rollback/'}
+                           //changeRequest branch: 'master', comparator: 'GLOB', url: "https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback"
 						}
 					steps
 					{
