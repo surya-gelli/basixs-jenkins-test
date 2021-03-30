@@ -8,9 +8,8 @@ pipeline {
 			parallel {	
 				stage("rollback")
 				{
-				
 					when {
-	                    expression { return env.CHANGED =~ 'lambdas/rollback/';}
+	                    expression { return env.CHANGED ==~ 'lambdas/rollback/';}
 					}
 					steps
 					{
