@@ -7,8 +7,7 @@ pipeline {
 				{
 					when {
 							changeset "lambdas/rollback/*"
-						}
-					}
+				    }
 					steps
 					{
 						script 
