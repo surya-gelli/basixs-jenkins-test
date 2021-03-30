@@ -6,7 +6,8 @@ pipeline {
 				stage("rollback")
 				{
 					when {
-							changeset "lambdas/rollback/*"
+							//changeset "lambdas/rollback/*"
+							changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback/'
 				    }
 					steps
 					{
