@@ -9,8 +9,9 @@ pipeline {
 				stage("rollback")
 				{
 					when {
-						    expression {return env.CHANGED ==~ 'lambdas/rollback/'}
-					}
+						   // expression {return env.CHANGED ==~ 'lambdas/rollback/'}
+                           changeRequest branch: 'master', comparator: 'GLOB', url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback'
+						}
 					steps
 					{
 						script 
