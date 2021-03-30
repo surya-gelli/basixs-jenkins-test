@@ -1,7 +1,7 @@
 pipeline {
 	agent  any
 	environment{
-		CHANGED = sh(returnStdout: true, script: "git diff --name-only $GIT_PREVIOUS_COMMIT...$GIT_COMMIT") 
+		CHANGED = sh(returnStdout: true, script: "git dif-tree --name-only $GIT_PREVIOUS_COMMIT...$GIT_COMMIT $DIR_PATH") 
 	}
 	stages {
 		stage ("lambdas") {
