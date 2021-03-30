@@ -10,7 +10,7 @@ pipeline {
 				{
 					when {
 						expression {
-							return env.CHANGED ==~ 'lambdas/rollback/'
+							return env.CHANGED =~ 'lambdas/rollback/'
 						}
 					}
 					steps
