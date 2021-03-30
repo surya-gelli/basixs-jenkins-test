@@ -30,8 +30,12 @@ pipeline {
 				}	
 				stage("slack")
 				{
-					when {
-	                    changeRequest()
+					when { 
+						anyOf {
+						    //changeset 'lambdas/slack/**' 
+							changeRequest url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback'
+
+						}
 					}
 					steps
 					{
