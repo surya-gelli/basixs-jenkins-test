@@ -8,17 +8,16 @@ pipeline {
 			parallel {	
 				stage("rollback")
 				{    
-					echo env.CHANGED
-					echo "kkkkkkk"
 					when {
 						//expression {return env.CHANGED ==~ "/lambdas/rollback/**"}
-						changeset comparator: 'GLOB',pattern: env.CHANGED =~ 'lambdas/rollback/*.*'
+						changeset 'lambdas/rollback/**'
                            //changeRequest branch: 'master', comparator: 'GLOB', url: "https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback"
 					}
 					steps
 					{
 						script 
 						{
+							sh ''' echo env.CHANGED '''
 							if (env.BRANCH_NAME == 'master') 
 							{
 								sh ''' cd lambdas/rollback/ && cat ECSRollbackfunction.py '''
