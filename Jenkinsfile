@@ -1,7 +1,8 @@
 pipeline {
 	agent  any
 	environment{
-		CHANGED = sh(returnStdout: true, script: 'git diff-tree origin/$BRANCH_NAME --stat=999 lambdas/rollback | awk "{print $1}"') 
+		//CHANGED = sh(returnStdout: true, script: 'git diff-tree origin/$BRANCH_NAME --stat=999 lambdas/rollback | awk "{print $1}"') 
+		CHANGED = sh(returnStdout: true, script: 'git diff-tree origin master $GIT_PREVIOUS_COMMIT...GIT_COMMIT'
 	}
 	stages {
 		stage ("lambdas") {
