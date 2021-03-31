@@ -22,8 +22,8 @@ pipeline {
 					}	
 					steps
 					{
-						script 
-						
+						script {
+
 							if ( env.BRANCH_NAME == 'master') 
 							{
 								sh ''' cd lambdas/rollback/ && cat ECSRollbackfunction.py '''
