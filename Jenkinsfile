@@ -37,14 +37,14 @@ pipeline {
 				}	
 				stage("slack")
 				{
-					when { 
+				    when {
 						anyOf {
 							changeset 'lambdas/slack/**'
-						    expression {sh(returnStatus: true, script: './changes.sh') == 0}
+						    expression {return env.CHANGED = "" }   
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
 						}		
-					}
+					}	
 					steps
 					{
 						script
