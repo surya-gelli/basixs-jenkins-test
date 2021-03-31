@@ -21,6 +21,7 @@ pipeline {
                             //changeRequest ( url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback/', branch: 'master' )
 						    //changeRequest branch: 'development
 							expression {return env.CHANGED = ""}
+							expression {return env.CHANGED != ""}
 						}		
 					}	
 					steps
