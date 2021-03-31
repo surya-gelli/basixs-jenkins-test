@@ -14,8 +14,8 @@ pipeline {
 				{    
 					when {
 						anyOf {
-						    expression {sh(returnStatus: true, script: './changes.sh') == 0}
-						    changeset 'lambdas/rollback/**'
+							changeset 'lambdas/rollback/**'
+						    expression {sh(returnStatus: true, script: './changes.sh') == 0}   
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
 						}		
@@ -39,8 +39,8 @@ pipeline {
 				{
 					when { 
 						anyOf {
+							changeset 'lambdas/slack/**'
 						    expression {sh(returnStatus: true, script: './changes.sh') == 0}
-						    changeset 'lambdas/slack/**'
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
 						}		
