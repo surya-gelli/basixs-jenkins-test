@@ -2,7 +2,7 @@ pipeline {
 	agent  any
 	environment{
     	//TARGET = "${changeRequest() ? url:'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback/'}"
-		CHANGED = sh(returnStdout: true, script: "git diff-tree origin master $GIT_PREVIOUS_COMMIT...$GIT_COMMIT -- lambdas/rollback/") 
+		CHANGED = sh(returnStdout: true, script: "git diff-tree origin master --stat=999 lambdas/rollback/") 
 		//CHANGED_DEV = sh(returnStdout: true, script: "git diff-tree origin development $GIT_PREVIOUS_COMMIT...$GIT_COMMIT $DIR_PATH")
 		//CHANGED = sh(returnStdout: true, script: 'git diff-tree origin/$BRANCH_NAME --stat=999 lambdas/rollback | awk "{print $1}"'
 	}
