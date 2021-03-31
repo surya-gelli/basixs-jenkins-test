@@ -15,7 +15,7 @@ pipeline {
 				stage("rollback")
 				{ 
 				    environment{
-					    CHANGED = sh(returnStdout: true, script: 'git diff origin/master --name-only')
+					    CHANGED = sh(returnStdout: true, script: "git diff origin/master --name-only")
 				   }   
 					when {
 						anyOf {
