@@ -2,7 +2,7 @@ pipeline {
 	agent  any
 	environment {
 		DIR_PATH = 'lambdas'
-		CHANGED = sh(returnStdout: true , script: 'git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $DIR_PATH')
+		CHANGED = sh(returnStdout: true , script: "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $DIR_PATH")
     	//TARGET = "${changeRequest() ? branch: 'master'}"
 		//COMMIT =  sh(returnStdout: true , script:'./changes.sh')
 		//CHANGED_DEV = sh(returnStdout: true, script: "git diff-tree origin/$BRANCH_NAME --stat=999 //$GIT_PREVIOUS_COMMIT...$GIT_COMMIT lambdas/rollback")
@@ -15,13 +15,12 @@ pipeline {
 				stage("rollback")
 				{    
 					when {
-						allOf {
+						anyOf {
 							//changeset 'lambdas/rollback/**'
 						    //expression {sh(returnStdout:true, script: './changes.sh')==0 } 
                             //changeRequest ( url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback/', branch: 'master' )
 						    //changeRequest branch: 'development
 							expression {return env.CHANGED != ""}
-							expression {return env.CHANGED = ""}
 						}		
 					}	
 					steps
