@@ -13,12 +13,12 @@ pipeline {
 				stage("rollback")
 				{    
 					when {
-						anyOf {
-							changeset 'lambdas/rollback/**'
-						    expression { return env.CHANGED = "" } 
+						//anyOf {
+							//changeset 'lambdas/rollback/**'
+						    expression { return env.CHANGED != "" } 
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
-						}		
+						//}		
 					}	
 					steps
 					{
