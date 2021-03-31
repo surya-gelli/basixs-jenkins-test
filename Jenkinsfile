@@ -15,7 +15,7 @@ pipeline {
 					when {
 						//allOf {
 							//changeset 'lambdas/rollback/**'
-						    expression { return, env.CHANGED = "" }
+						    expression { return env.CHANGED = "" }
                             //changeRequest ()
 						    //changeRequest branch: 'development
 						//}		
