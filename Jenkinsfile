@@ -2,7 +2,6 @@ pipeline {
 	agent  any
 	environment{
     	TARGET = "${changeRequest() ? CHANGE_TARGET:BRANCH_NAME}"
-  	}
 		//CHANGED = sh(returnStdout: true, script: "git diff-tree origin $CURRENTBRANCH $GIT_PREVIOUS_COMMIT...$GIT_COMMIT $DIR_PATH") 
 		//CHANGED_DEV = sh(returnStdout: true, script: "git diff-tree origin development $GIT_PREVIOUS_COMMIT...$GIT_COMMIT $DIR_PATH")
 	}
@@ -18,7 +17,7 @@ pipeline {
 						    //expression {return env.CHANGED = "lambdas/rollback/"}
 						    //expression {return env.CHANGED = "lambdas/rollback/"}
 						//} //changeset 'lambdas/rollback/**'
-                        changeRequest branch: 'master', url: "https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback/"
+                        //changeRequest branch: 'master', url: "https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback/"
 					//}
 					steps
 					{
