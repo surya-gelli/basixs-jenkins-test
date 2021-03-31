@@ -13,12 +13,12 @@ pipeline {
 				stage("rollback")
 				{    
 					when {
-						anyOf {
-							changeset 'lambdas/rollback/**'
+						//anyOf {
+							//changeset 'lambdas/rollback/**'
 						    expression {return env.CHANGED = "" }   
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
-						}		
+						//}		
 					}	
 					steps
 					{
@@ -38,12 +38,12 @@ pipeline {
 				stage("slack")
 				{
 				    when {
-						anyOf {
-							changeset 'lambdas/slack/**'
+						//anyOf {
+							//changeset 'lambdas/slack/**'
 						    expression {return env.CHANGED = "" }   
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
-						}		
+						//}		
 					}	
 					steps
 					{
