@@ -13,7 +13,7 @@ pipeline {
 				stage("rollback")
 				{    
 					when {
-						anyOf
+						anyOf {
 						    expression {return env.CHANGED = ""}
 						    expression {return env.CHANGED != ""}
 						//} //changeset 'lambdas/rollback/**'
