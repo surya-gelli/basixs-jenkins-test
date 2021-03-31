@@ -7,6 +7,7 @@ pipeline {
 	stages {
 		stage ("lambdas") {
 			parallel 
+		    {
 				stage("rollback")
 				{    
 					when {
