@@ -1,11 +1,11 @@
 pipeline {
 	agent  any
-	environment{
+	//environment{
     	//TARGET = "${changeRequest() url:'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback/'}"
-		CHANGED = sh(returnStdout: true, script: "git diff origin/master --name-only") 
+		//CHANGED = sh(returnStdout: true, script: "git diff origin/master --name-only") 
 		//CHANGED_DEV = sh(returnStdout: true, script: "git diff-tree origin/$BRANCH_NAME --stat=999 //$GIT_PREVIOUS_COMMIT...$GIT_COMMIT lambdas/rollback")
 		//CHANGED = sh(returnStdout: true, script: 'git diff-tree origin/$BRANCH_NAME --stat=999 lambdas/rollback | awk "{print $1}"'
-	}
+	//}
 	stages {
 		stage ("lambdas") {
 			parallel 
@@ -13,13 +13,11 @@ pipeline {
 				stage("rollback")
 				{    
 					when {
-						anyOf {
-						    expression {return env.CHANGED = ""}
-						    expression {return env.CHANGED != ""}
+						//anyOf {
+						    expression {changeLogSets != ""}
 						//} //changeset 'lambdas/rollback/**'
                             //changeRequest branch: 'master' 
-						    //changeRequest branch: 'development'
-						}
+						    //changeRequest branch: 'development
 					}	
 					steps
 					{
@@ -64,4 +62,19 @@ pipeline {
 		}
 		
 	}
+}
+
+
+def changeLogSets = currentBuild.changeSets
+for (int i = 0; i < changeLogSets.size(); i++) {
+    def entries = changeLogSets[i].items
+    for (int j = 0; j < entries.length; j++) {
+        def entry = entries[j]
+        echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
+        def files = new ArrayList(entry.affectedFiles)
+        for (int k = 0; k < files.size(); k++) {
+            def file = files[k]
+            echo "  ${file.editType.name} ${file.path}"
+        }
+    }
 }
