@@ -20,4 +20,6 @@ def get_previous_task_definition(task_definition):
     previous_version_number = str(int(task_definition.split(':')[-1])-1)
     previous_task_definition = ':'.join(task_definition.split(':')[:-1]) + ':' + previous_version_number
     return previous_task_definition
+
+    
 get_previous_task_definition
