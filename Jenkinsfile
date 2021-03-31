@@ -1,9 +1,9 @@
 pipeline {
 	agent  any
-	environment{
-		CHANGED = sh(returnStdout: true, script: "git diff-tree origin $CURRENTBRANCH $GIT_PREVIOUS_COMMIT...$GIT_COMMIT $DIR_PATH") 
+	//environment{
+		//CHANGED = sh(returnStdout: true, script: "git diff-tree origin $CURRENTBRANCH $GIT_PREVIOUS_COMMIT...$GIT_COMMIT $DIR_PATH") 
 		//CHANGED_DEV = sh(returnStdout: true, script: "git diff-tree origin development $GIT_PREVIOUS_COMMIT...$GIT_COMMIT $DIR_PATH")
-	}
+	//}
 	stages {
 		stage ("lambdas") {
 			parallel 
