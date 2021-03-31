@@ -13,14 +13,17 @@ pipeline {
 			parallel 
 		    {
 				stage("rollback")
-				{    
+				{ 
+				   environment{
+					   CHANGED = sh(returnStdout: true, script: 'git diff origin/master --name-only')
+				   }   
 					when {
 						anyOf {
 							//changeset 'lambdas/rollback/**'
 						    //expression {sh(returnStdout:true, script: './changes.sh')==0 } 
                             //changeRequest ( url: 'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback/', branch: 'master' )
 						    //changeRequest branch: 'development
-							expression {return env.CHANGED = '$DIR_PATH/rollback/'}
+							expression {return env.CHANGED ==~ 'lambda/rollback/' }
 						}		
 					}	
 					steps
