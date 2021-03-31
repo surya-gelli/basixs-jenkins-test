@@ -1,8 +1,8 @@
 pipeline {
 	agent  any
-	//environment{
+	environment{
     	//TARGET = "${changeRequest() url:'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback/'}"
-		//CHANGED = sh(returnStdout: true, script: "git diff origin/master --name-only") 
+		CHANGED = sh(returnStdout: true, script: "./changes.sh") 
 		//CHANGED_DEV = sh(returnStdout: true, script: "git diff-tree origin/$BRANCH_NAME --stat=999 //$GIT_PREVIOUS_COMMIT...$GIT_COMMIT lambdas/rollback")
 		//CHANGED = sh(returnStdout: true, script: 'git diff-tree origin/$BRANCH_NAME --stat=999 lambdas/rollback | awk "{print $1}"'
 	//}
@@ -15,7 +15,7 @@ pipeline {
 					when {
 						anyOf {
 							changeset 'lambdas/rollback/**'
-						    expression {sh(returnStatus: true, script: './changes.sh') == 0}   
+						    expression {return env.CHANGED != ""}   
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
 						}		
