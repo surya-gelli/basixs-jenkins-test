@@ -15,7 +15,7 @@ pipeline {
 					when {
 						//anyOf {
 							//changeset 'lambdas/rollback/**'
-						    expression { sh(returnStatus: true, script: './lastrun.sh') == 0 }
+						    expression { sh(returnStatus: true, script: './changes.sh') == 0 }
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
 						//}		
