@@ -12,7 +12,7 @@ fi
 
 # Check is files in given directory changed between commits
 # NOTE: $GIT_PREVIOUS_COMMIT and $GIT_COMMIT provided by Jenkins GIT Plugin
-CHANGED=`git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT lambdas/rollback/`
+CHANGED=`git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT lambdas/`
 
 if [ -z "$CHANGED" ]; then
     echo "No changes dettected..."
