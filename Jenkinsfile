@@ -4,6 +4,7 @@ pipeline {
     	TARGET = "${changeRequest() ? branch:BRANCH_NAME}"
 		//CHANGED = sh(returnStdout: true, script: "git diff-tree origin $CURRENTBRANCH $GIT_PREVIOUS_COMMIT...$GIT_COMMIT $DIR_PATH") 
 		//CHANGED_DEV = sh(returnStdout: true, script: "git diff-tree origin development $GIT_PREVIOUS_COMMIT...$GIT_COMMIT $DIR_PATH")
+		//CHANGED = sh(returnStdout: true, script: 'git diff-tree origin/$BRANCH_NAME --stat=999 lambdas/rollback | awk "{print $1}"'
 	}
 	stages {
 		stage ("lambdas") {
