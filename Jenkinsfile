@@ -13,12 +13,12 @@ pipeline {
 				stage("rollback")
 				{    
 					when {
-						anyOf {
+						//anyOf {
 						    expression {sh(returnStatus: true, script: './changes.sh') == 0}
-						    changeset 'lambdas/rollback/**'
+						    //changeset 'lambdas/rollback/**'
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
-						}		
+						//}		
 					}	
 					steps
 					{
