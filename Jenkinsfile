@@ -2,7 +2,7 @@ pipeline {
 	agent  any
 	environment {
     	//TARGET = "${changeRequest() url:'https://github.com/surya-gelli/basixs-jenkins-test/tree/$BRANCH_NAME/lambdas/rollback/'}"
-		CHANGED =  "${sh(returnStdout: true , script:'./changes.sh' ) == 0}"
+		CHANGED =  sh(returnStdout: true , script:'./changes.sh')
 		//CHANGED_DEV = sh(returnStdout: true, script: "git diff-tree origin/$BRANCH_NAME --stat=999 //$GIT_PREVIOUS_COMMIT...$GIT_COMMIT lambdas/rollback")
 		//CHANGED = sh(returnStdout: true, script: 'git diff-tree origin/$BRANCH_NAME --stat=999 lambdas/rollback | awk "{print $1}"'
 	}
@@ -15,7 +15,7 @@ pipeline {
 					when {
 						//anyOf {
 							//changeset 'lambdas/rollback/**'
-						    expression { return env.CHANGED = "" } 
+						    expression { return env.CHANGED ==~ "" } 
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
 						//}		
@@ -23,7 +23,7 @@ pipeline {
 					steps
 					{
 						script 
-						{
+						
 							if ( env.BRANCH_NAME == 'master') 
 							{
 								sh ''' cd lambdas/rollback/ && cat ECSRollbackfunction.py '''
