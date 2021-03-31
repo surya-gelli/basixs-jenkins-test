@@ -24,7 +24,3 @@ def lambda_handler(event, context):
     except Exception as em:
         print("EXCEPTION: " + str(em))
 
-<<<<<<< HEAD
-=======
-lambda_handler
->>>>>>> development
