@@ -15,7 +15,7 @@ pipeline {
 					when {
 						//anyOf {
 							//changeset 'lambdas/rollback/**'
-						    expression {return env.CHANGED = "" }   
+						    expression {return env.CHANGED != "" }   
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
 						//}		
@@ -40,7 +40,7 @@ pipeline {
 				    when {
 						//anyOf {
 							//changeset 'lambdas/slack/**'
-						    expression {return env.CHANGED = "" }   
+						    expression {return env.CHANGED != "" }   
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
 						//}		
