@@ -5,7 +5,7 @@ pipeline {
 		CHANGED = sh(returnStdout: true, script: "./changes.sh") 
 		//CHANGED_DEV = sh(returnStdout: true, script: "git diff-tree origin/$BRANCH_NAME --stat=999 //$GIT_PREVIOUS_COMMIT...$GIT_COMMIT lambdas/rollback")
 		//CHANGED = sh(returnStdout: true, script: 'git diff-tree origin/$BRANCH_NAME --stat=999 lambdas/rollback | awk "{print $1}"'
-	//}
+	}
 	stages {
 		stage ("lambdas") {
 			parallel 
