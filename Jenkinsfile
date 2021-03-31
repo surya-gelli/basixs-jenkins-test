@@ -17,8 +17,9 @@ pipeline {
 						    //expression {return env.CHANGED = "lambdas/rollback/"}
 						    //expression {return env.CHANGED = "lambdas/rollback/"}
 						//} //changeset 'lambdas/rollback/**'
-                        changeRequest branch: 'master'
-						changeRequest branch: 'development'
+                            changeRequest branch: 'master'
+						    changeRequest branch: 'development'
+						}
 					}	
 					steps
 					{
