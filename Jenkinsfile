@@ -1,28 +1,30 @@
 pipeline {
 	agent  any
-	//environment{
+	environment{
+    	TARGET = "${changeRequest() ? CHANGE_TARGET:BRANCH_NAME}"
+  	}
 		//CHANGED = sh(returnStdout: true, script: "git diff-tree origin $CURRENTBRANCH $GIT_PREVIOUS_COMMIT...$GIT_COMMIT $DIR_PATH") 
 		//CHANGED_DEV = sh(returnStdout: true, script: "git diff-tree origin development $GIT_PREVIOUS_COMMIT...$GIT_COMMIT $DIR_PATH")
-	//}
+	}
 	stages {
 		stage ("lambdas") {
 			parallel 
 		    {
 				stage("rollback")
 				{    
-					when {
+					//when {
 						//anyOf{
 
 						    //expression {return env.CHANGED = "lambdas/rollback/"}
 						    //expression {return env.CHANGED = "lambdas/rollback/"}
 						//} //changeset 'lambdas/rollback/**'
-                        changeRequest branch: 'master', comparator: 'GLOB', url: "https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback"
-					}
+                        changeRequest branch: 'master', url: "https://github.com/surya-gelli/basixs-jenkins-test/tree/master/lambdas/rollback/"
+					//}
 					steps
 					{
 						script 
 						{
-							if (env.BRANCH_NAME == 'master') 
+							if ($TARGET == 'master') 
 							{
 								sh ''' cd lambdas/rollback/ && cat ECSRollbackfunction.py '''
 							}
