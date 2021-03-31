@@ -23,7 +23,7 @@ pipeline {
 					{
 						script 
 						{
-							if ($TARGET == 'master') 
+							if ( env.TARGET == 'master') 
 							{
 								sh ''' cd lambdas/rollback/ && cat ECSRollbackfunction.py '''
 							}
