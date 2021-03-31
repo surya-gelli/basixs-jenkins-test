@@ -13,17 +13,16 @@ pipeline {
 				stage("rollback")
 				{    
 					when {
-						//anyOf {
+						allOf {
 							//changeset 'lambdas/rollback/**'
 						    expression { sh(returnStatus: true, script: './changes.sh') == 0 }
-                            //changeRequest branch: 'master' 
+                            changeRequest ()
 						    //changeRequest branch: 'development
-						//}		
+						}		
 					}	
 					steps
 					{
 						script {
-
 							if ( env.BRANCH_NAME == 'master') 
 							{
 								sh ''' cd lambdas/rollback/ && cat ECSRollbackfunction.py '''
