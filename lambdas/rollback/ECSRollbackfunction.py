@@ -1,8 +1,5 @@
 import boto3
 
-
-#
-
 ecs = boto3.client('ecs', region_name='us-east-2')
 
 def lambda_handler(event, context):
