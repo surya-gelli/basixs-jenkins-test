@@ -41,7 +41,7 @@ pipeline {
 				    when {
 						anyOf {
 							//changeset 'lambdas/slack/**'
-						    expression {return env.CHANGED =~ "lambdas/slack" }   
+						    expression {return $CHANGED =~ "lambdas/slack" }   
                             //changeRequest branch: 'master' 
 						    //changeRequest branch: 'development
 						}		
