@@ -27,7 +27,7 @@ pipeline {
 						script {
 							if ( env.BRANCH_NAME == 'master') 
 							{
-								sh ''' cd lambdas/rollback/ && cat ECSRollbackfunction.py '''
+								sh ''' cd lambdas/modify-configuration-actions/ cat app.html '''
 							}
 							else 	
 							{
